@@ -1,0 +1,25 @@
+#include<iostream>
+#include<string>
+#include<iomanip>
+using namespace std;
+ int main()
+ {
+	 double e=2.7182818284590452353602874713527;
+	 int x;
+	 while (true)
+	 {
+		 cout<<"entre a number:"<<endl;
+		 cin>>x;
+		 if(x>0 && x<20)
+		 {
+			 break;
+		 }
+		 else
+		 {
+			 cout<<"try again"<<endl;
+		 }
+	 }
+	 streamsize prec = cout.precision();
+	 cout<<setprecision(x);
+	 cout<<"here your number:"<< e <<endl;
+ }
