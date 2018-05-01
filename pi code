@@ -1,0 +1,32 @@
+#include <iostream>
+#include <string>
+#include <iomanip>
+
+int main()
+{
+    double PI_NUMBER = atan(1)*4;
+    int x = 0;
+	bool chance= true;
+	{
+    while(chance)
+    {
+        std::cout << "entre your number"<<std::endl;
+        std::cin >> x;
+        if(x > 0 && x <= 20)
+        {
+            break;
+        }
+        else
+        {
+            std::cout << "sorry try again, you entered out of range number" << std::endl;
+        }
+    }
+
+	chance=false;
+
+	}
+
+	std::streamsize prec = std::cout.precision();
+	std::cout << std::setprecision(x);
+	std::cout << "Here your number: " << PI_NUMBER <<std::endl;
+}
