@@ -4,11 +4,11 @@
 
 int main()
 {
-    double PI_NUMBER = atan(1)*4;
+    double PI_NUMBER = 3.141592653589793238848654341684;
     int x;
-	bool chance= true;
+	bool try= true;
 	{
-    while(chance)
+    while(try)
     {
         std::cout << "entre your number"<<std::endl;
         std::cin >> x;
@@ -22,7 +22,7 @@ int main()
         }
     }
 
-	chance=false;
+	try=false;
 
 	}
 
