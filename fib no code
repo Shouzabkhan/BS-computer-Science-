@@ -1,0 +1,23 @@
+#include<iostream>
+using namespace std;
+ 
+int main()
+{
+    int fib_no1 = 0;
+	int fib_no2 = 1;
+	int fib_no3 = 1;
+	int x;
+	cout<<"enter a number"<<endl;
+	cin>>x;
+    cout << "fib no:-" <<endl;
+	cout << fib_no1 <<endl; 
+	cout<< fib_no2 <<endl;
+    while (fib_no1 + fib_no2 < x)
+    {
+        fib_no3 = fib_no1 + fib_no2;
+        fib_no1 = fib_no2;
+        fib_no2 = fib_no3;
+        cout << fib_no3 << " "<<endl;
+    } 
+    return 0;
+}
