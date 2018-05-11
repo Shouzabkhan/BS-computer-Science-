@@ -1,0 +1,41 @@
+IMPLEMENTATION FILE:-
+#include<iostream>
+#include<math.h>
+#include"Header.h"
+using namespace std;
+
+double add(double a, double b)
+{
+	cout<< a+b;
+	return 0;
+}
+double sub(double a, double b)
+{
+	cout<< a-b;
+	return 0;
+}
+double mul(double a, double b)
+{
+	cout<< a*b;
+	return 0;
+}
+double div(double a, double b)
+{
+	cout<< a/b;
+	return 0;
+}
+int main()
+{
+	//add(2.5,2);
+	div(4.0,2.0);
+	//mul(2,2);
+	//sub(4,2);
+}
+
+
+HEADER FILE:-
+double add(double a, double b);
+double sub(double a, double b);
+double mul(double a, double b);
+double div(double a, double b);
+
