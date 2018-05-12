@@ -1,0 +1,18 @@
+#include<iostream>
+#include<math.h>
+using namespace std;
+
+int main()
+{
+	double a;
+	double b;
+	double power;
+	cout<<"entre a number "<<endl;
+	cin>>a;
+	cout<<"entre a number "<<endl;
+	cin>>b;
+	power = pow(a,b);
+	cout<<"result=";
+	cout<<power<<endl;
+}
+
