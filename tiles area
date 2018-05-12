@@ -1,0 +1,22 @@
+#include<iostream>
+#include<math.h>
+using namespace std;
+
+int main()
+{
+	int h;
+	int w;
+	int r;
+	int area;
+	int total;
+	cout<<"heght of room? "<<endl;
+	cin>> h;
+	cout<<"width of room "<<endl;
+	cin>>w;
+	area=w*h;
+	cout<< "price of tile "<<endl;
+	cin>> r;
+	total= area*r;
+	cout<<total<<endl;
+	return 0;
+}
