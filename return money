@@ -1,0 +1,42 @@
+#include<iostream>
+#include<math.h>
+using namespace std;
+int main()
+{
+	double total;
+	double paid;
+	double balance;
+
+	int change, fivethousand,thousand,fivehundred,hundred,fifty,ten,five,two,one;
+
+	cout<<"total bill= ";
+	cin>>total;
+	cout<<endl;
+
+	cout<<"amount paid= ";
+	cin>>paid;
+	cout<<endl;
+
+	cout<<"balance: ";
+	balance = total - paid;
+	cout << balance << endl;
+
+	if (balance>=5000)
+	{
+		fivethousand=balance/5000;
+		cout<<"give "<<fivethousand<<" fivethousand"<<endl;
+	}
+	else if(balance>=1000)
+	{
+		thousand=balance/1000;
+			cout<<"give "<<thousand<<"thousand"<<endl;
+	}
+	ten=balance/10;
+	cout<< "give "<<ten<<" tens"<<endl;
+	one=balance/1;
+	cout<< "give "<<one<<" one"<<endl;
+	two=balance/2;
+	cout<< "give "<<two<<" two"<<endl;
+
+
+}
