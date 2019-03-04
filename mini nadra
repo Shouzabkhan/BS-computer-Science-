@@ -1,0 +1,371 @@
+// name: SHOUZAB KHAN
+// ROLL NO: P176101
+
+#include<iostream>
+#include<string>
+
+using namespace std;
+struct cellnode
+{
+    int cellno;
+    string networkname;
+    cellnode *Down;
+};
+struct personnode
+{
+    int cnic;
+    string name;
+    string fathername;
+    char gender;
+    string address;
+    personnode *next;
+    cellnode *down;
+};
+
+
+class list
+{
+    public:
+    	cellnode *chead;
+        personnode *phead;
+        
+        list()
+        {
+        	chead = NULL;
+            phead = NULL;
+        }
+        void insertion(int nic , string name , string fname , char gend, string address)
+        {
+            if (phead == NULL)
+            {
+                phead = new personnode;
+                phead->cnic = nic;
+                phead->name = name;
+                phead->fathername = fname;
+                phead->gender = gend;
+                phead->address = address;
+                phead->down = NULL;
+                phead->next = NULL;
+                return;
+            }
+            personnode *temp = phead;
+            while(temp->next != NULL)
+            {
+                temp = temp->next;
+            }
+            personnode *temp1 = new personnode;
+            temp1->cnic = nic;
+            temp1->name = name;
+            temp1->fathername = fname;
+            temp1->gender = gend;
+            temp1->address = address;
+            temp1->down = NULL;
+            temp1->next = NULL;
+            temp->next = temp1;
+            //delete(temp1);
+        }
+        void cell_no_reg(int snum ,int num , string n_name)
+        {
+            bool flag = false;
+            personnode *temp = phead;
+            while(temp != NULL)
+            {
+                
+                if (temp->cnic == snum)
+                {
+                    flag = true;
+                    chead = temp->down;
+                    break;
+                }
+                temp = temp->next;
+            }
+            if (flag == true)
+            {
+              if (chead == NULL)
+              {
+                chead = new cellnode;
+                chead->cellno = num;
+                chead->networkname = n_name;
+                chead->Down = NULL;
+                temp->down = chead;
+                return;
+              }
+                cellnode *temp2 = chead;
+                int count = 0;
+                while (temp2->Down != NULL && count <= 4)
+                {
+                    temp2 = temp2->Down;
+                    count++;
+                }
+                if (count <= 4)
+                {
+                    cellnode *temp3 = new cellnode;
+                    temp3->cellno = num;
+                    temp3->networkname = n_name;
+                    temp3->Down = chead;
+                	temp->down = temp3;
+                	//temp->down = chead;
+                    return;
+                }
+                else
+                {
+                    cout<<"More then 4 numbers not allowed";
+                }
+            }
+            else if(flag == false)
+            {
+                cout<<"Nic Not found";
+                return;
+            }
+        }
+        void person_deletion(int nic)
+        {
+        	personnode *temp = phead;
+        	while(temp->next != NULL)
+        	{
+        		if(temp->next->cnic = nic)
+        		{
+        			break;
+				}
+				temp = temp->next;
+			}
+			personnode *temp2 = temp->next;
+        	temp->next = temp->next->next;
+       		delete temp2;
+        	return;
+		}
+        void print()
+        {
+            personnode *temp = phead;
+            while(temp != NULL)
+            {
+                
+                cout<<temp->name<<"  "<<temp->fathername<<"  "<<temp->gender<<"  "<<temp->cnic<<"  "<<temp->address<<endl;
+                temp = temp->next;
+            }
+        }
+        ~list()
+        {
+        	delete chead;
+        	delete phead;
+		}
+		void print_cell_numbers(int nic)
+		{
+			bool flag = false;
+			personnode *temp = phead;
+			while(temp != NULL)
+			{
+				if (temp->cnic == nic)
+				{
+					flag = true;
+					break;
+				}
+				temp = temp->next;
+			}
+				if (flag == true)
+				{
+					chead = temp->down;
+					cellnode *temp1 = chead;
+					cout<<"Person name  "<<temp->name<<endl;
+					while(temp1 != NULL)
+					{
+						cout<<temp1->cellno;
+						cout<<"  "<<temp1->networkname<<endl;
+						temp1 = temp1->Down;
+					}
+				}
+			}
+			void update_address(int nic,string n_addr)
+			{
+				bool flag = false;
+				personnode *temp = phead;
+				while(temp != NULL)
+				{
+					if(temp->cnic == nic)
+					{
+						flag = true;
+						break;
+					}
+					temp = temp->next;
+				}
+				if (flag == true)
+				{
+					temp->address = n_addr;
+					return;
+				}
+				else
+				{
+					cout<<"person not found";
+					return;
+				}
+			}
+			void count_network()
+			{
+				int u = 0;
+				int t = 0;
+				int z = 0;
+				int j = 0;
+				personnode *temp = phead;
+				while(temp!= NULL)
+				{
+					if (temp->down!= NULL)
+					{
+						chead = temp->down;
+						cellnode *temp1 = chead;
+						while(temp1 != NULL)
+						{
+							if (temp1->networkname == "Ufone")
+							{
+								u++;
+							}
+							if (temp1->networkname == "telenor")
+							{
+								t++;
+							}
+							if (temp1->networkname == "zong")
+							{
+								z++;
+							}
+							if (temp1->networkname == "jazz")
+							{
+								j++;
+							}
+							temp1 = temp1->Down;
+						}
+						temp = temp->next;
+					}
+					else
+					{
+						temp = temp->next;
+					}
+				}
+				cout<<"telenor = "<<t;
+				cout<<endl<<"Ufone = "<<u;
+				cout<<endl<<"Jazz = "<<j;
+				cout<<endl<<"Zong = "<<z;
+			}
+			void change_owner(int nic1 , int nic2, int fnum)
+			{
+				bool flag;
+				bool flag1;
+				string a;
+				personnode *temp = phead;
+				while (temp != NULL)
+				{
+					if (temp->cnic == nic1)
+					{
+						chead = temp->down;
+						cellnode *temp1 = chead;
+						while(temp1 != NULL)
+						{
+							if (temp1->cellno == fnum)
+							{
+								if (chead->cellno == temp1->cellno)
+								{
+									chead = chead->Down;
+									temp->down = chead;
+									a = temp1->networkname;
+									break;
+								}
+								if (chead->Down->cellno == temp1->cellno)
+								{
+									chead = chead->Down->Down;
+									a = temp1->networkname; 
+									break;
+								}
+								if (chead->Down->Down->cellno == temp1->cellno)
+								{
+									chead->Down = chead->Down->Down;
+									a = temp1->networkname;
+									break; 
+								}
+								if (chead->Down->Down->Down->cellno == temp1->cellno)
+								{
+									chead->Down->Down = NULL;
+									a = temp1->networkname;
+									break;
+								}
+							}
+							temp1 = temp1->Down;
+						}
+					}
+					temp = temp->next;
+				}
+				temp = phead;
+				
+				while(temp != NULL)
+				{
+					if (temp->cnic == nic2)
+					{
+						cellnode *temp1 = new cellnode;
+						temp1->cellno = fnum;
+						temp1->networkname = a;
+						temp1->Down = chead;
+						chead = temp1;
+						return;
+					}
+				}
+			}
+			void change_network_name(int nic , int fnum,string n_name)
+			{
+				
+				personnode *temp = phead;
+				while(temp != NULL)
+				{
+					if (temp->cnic == nic)
+					{
+						chead = temp->down;
+						cellnode *temp1 = chead;
+						while(temp1 != NULL)
+						{
+							if (temp1->cellno == fnum)
+							{
+								temp1->networkname = n_name;
+								return;
+							}
+						}
+					}
+				}
+			}
+
+};
+
+int main()
+{
+    list l;
+    cout<<"                                                         PUTTING THE PERSON'S DATA "<<endl<<endl;
+    l.insertion(1231,"huzaifa","afrid shah",'m',"kohat");
+    l.insertion(1232,"aamir","amir khan",'m',"banuu");
+    l.insertion(1233,"shouzab","atif khan",'m',"peshawar");
+    l.insertion(1234,"asim","mehmood",'m',"kohat");
+    l.insertion(1235,"humbal","abid",'m',"mardan");
+    l.insertion(1236,"abdullah","sheikh",'m',"pindi");
+    l.insertion(1237,"shahab","paracha",'m',"lahore");
+    l.insertion(1238,"sanan","gul",'m',"gujrawala");
+    l.insertion(1239,"mujtaba","qureishi",'m',"islamabad");
+	l.insertion(1230,"ahmad","tariq",'m',"lahore");
+    l.print();
+    cout<<endl;
+    cout<<"                                                         PUTTING THE PERSON'S CELL NUMBER "<<endl<<endl;
+    l.cell_no_reg(1234,33548,"Ufone");
+	l.cell_no_reg(1231,34592,"telenor");
+	l.cell_no_reg(1235,30059,"jazz");
+	l.cell_no_reg(1238,31054,"zong");
+	l.print_cell_numbers(1231);
+	l.print_cell_numbers(1238);
+	cout<<"                                                         CHANGING PERSON'S ADDRESS "<<endl<<endl;
+	l.update_address(1231,"AMERICA");
+	l.print();
+    cout<<"                                                         PERSON'S CELL NUMBER "<<endl<<endl;
+    
+//	cout<<"                                                         CHANGE THE NETWORK "<<endl<<endl;
+//	l.change_network_name(1238,31054,"telenor");
+    cout<<"                                                         TOTAL NETWORKS IN DATA "<<endl<<endl;
+    
+	l.count_network();
+	cout<<"                                                         DELETING THE DATA "<<endl<<endl;
+	l.person_deletion(1232);
+	l.person_deletion(1233);
+	l.print();
+	return 0;
+}
